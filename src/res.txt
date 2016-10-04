@@ -1,1 +1,10 @@
-
+fastx_trimmer	/home/bioinfo/software/fastx_toolkit/fastx_toolkit-0.0.13.2/bin/fastx_trimmer
+bwa	/home/gp332/soft/bwa-0.7.13/bwa
+samtools	/home/gp332/soft/samtools-1.3/samtools
+bedtools	/home/gp332/soft/bedtools2/bin/bedtools
+picard	/home/gp332/soft/picard-tools-2.4.1/picard.jar
+gatk	/home/gp332/soft/GenomeAnalysisTK-3.6/GenomeAnalysisTK.jar
+freebayes	/home/gp332/soft/freebayes/bin/freebayes
+annovar	/home/gp332/soft/annovar/
+ref	/home/gp332/ref/GRCh38p5/GRCh38.p5.genome.fa
+dbsnp	/home/gp332/ref/GRCh38p5/resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf
