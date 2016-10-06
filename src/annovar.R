@@ -30,7 +30,26 @@ annovarInput <- function(gatk.vcf.dir, freebayes.vcf.dir, out.dir, res.info, out
   
   unique.pos.all <- unique(pos.all)
   
-  rlt <- unique.pos.all[order(unique.pos.all[,1], unique.pos.all[,2], unique.pos.all[,3], 
+  chr <- unique.pos.all[,1]
+  chr.int <- rep(0, length(chr))
+  for(i in 1:length(chr)){
+    tmp <- toupper(chr[i])
+    if(substr(tmp, 1, 3) == "CHR"){
+      tmp <- substring(tmp, 4)
+    }
+    
+    if(tmp == "X"){
+      chr.int[i] <- 23
+    } else if(tmp == "Y"){
+      chr.int[i] <- 24
+    } else if(tmp == "MT" || tmp == "M"){
+      chr.int[i] <- 25
+    } else {
+      chr.int[i] <- as.integer(tmp)
+    }
+  }
+  
+  rlt <- unique.pos.all[order(chr.int, unique.pos.all[,2], unique.pos.all[,3], 
                               unique.pos.all[,4], unique.pos.all[,5]),]
   out.file <- paste0(out.dir, out.label, ".avinput")
   write.table(rlt, file = out.file, quote = FALSE, sep = "\t", row.names = FALSE, col.names = FALSE)
@@ -298,6 +317,6 @@ annovar <- function(gatk.vcf.dir, freebayes.vcf.dir, out.dir, res.info, out.labe
 #names(res.info) <- c("annovar", "mm")
   
 #annovar(args[1], args[2], args[3], res.info, "annovar", "hg38",
-#                    gatk.pattern=".separated.vcf$", freebayes.pattern = ".freebayes.filtered.vcf$")
+#                    gatk.pattern="vcf$", freebayes.pattern = "vcf$")
 
 
